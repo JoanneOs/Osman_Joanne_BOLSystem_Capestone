@@ -6,8 +6,8 @@
   "type": "module",
 
   "scripts": {
-    "start": "node app.mjs",
-  "dev": "nodemon app.mjs",
+    "start": "node server.mjs",
+  "dev": "nodemon server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
