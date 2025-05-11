@@ -10,7 +10,7 @@ json scripts:
 "start": "node server.mjs",
 "dev": "nodemon server.mjs",
 
-mkdir data models routes
+mkdir models routes
 touch .env .gitignore server.mjs
 
 touch models/Bol.js
