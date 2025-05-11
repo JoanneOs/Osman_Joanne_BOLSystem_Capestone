@@ -33,6 +33,47 @@ git remote add origin https://github.com/JoanneOs/Osman_Joanne_BOLSystem_Capesto
 git branch -M main
 git push -u origin main
 
+/backend
+├── /node_modules
+├── /models
+│   └── bol.js
+├── /routes
+│   └── bolRoutes.js
+├── .env
+├── .gitignore
+├── package-lock.json
+├── package.json
+├── server.mjs
+└── readme.md
+
+
+coding:
+server.mjs Overview
+In this file, I set up an Express.js server, loaded environment variables with dotenv, and enabled CORS and JSON parsing. I also connected to a MongoDB database using Mongoose (defaulting to bol-system), and added a test route at / that just returns "BOL Tracker API".
+I then mounted the BOL-related routes under /api/bols and set the server to run on process.env.PORT or 3000 if not specified.
+
+Bol.js Overview
+In this file, I defined the BOL schema using Mongoose. The schema includes the following fields:
+
+loadNumber (String): A required and unique field to identify the BOL.
+date (Date): Defaults to the current date when a BOL is created.
+shipper (String): A required field for the shipper’s name.
+consignee (String): A required field for the consignee’s name.
+rate (Number): A required field to specify the rate.
+miles (Number): Optional field for the miles.
+status (String): An enumerated field that can be "Pending", "Paid", or "Disputed", defaulting to "Pending".
+Finally, I exported the model so it can be used in the routes.
+
+bolRoutes.js Overview
+In this file, I created the routes for handling BOL CRUD operations:
+
+GET /api/bols: Retrieves all BOLs from the database, sorted by date in descending order (newest first).
+GET /api/bols/:id: Retrieves a single BOL by its ID. If the BOL is not found, it returns a 404 error.
+POST /api/bols: Creates a new BOL. The status defaults to "Pending" if not provided. If there's a validation error, it returns a 400 error.
+PUT /api/bols/:id: Updates an existing BOL by its ID. If the BOL doesn't exist, it returns a 404 error.
+DELETE /api/bols/:id: Deletes a BOL by its ID. If the BOL doesn't exist, it returns a 404 error.
+The routes handle error responses with appropriate status codes (e.g., 500 for server errors, 400 for validation errors) and return JSON data.
+
 npm run dev
 
 Post man:
